@@ -1,6 +1,9 @@
 from django.db import models
 
 # Create your models here.
+
+# cria registros de escolas no banco de dados
+# cada registro é uma linha, com o nome e a cidade
 class Escola(models.Model):
     nome = models.CharField(max_length=100)
     cidade = models.CharField(max_length=100)
@@ -8,13 +11,15 @@ class Escola(models.Model):
     def __str__(self):
         return f"{self.nome} ({self.cidade})"
     
-    
+# Mesma coisa, porém para os participantes da prova
 class Participante(models.Model):
     nome = models.CharField(max_length=100)
-    id_participante = models.IntegerField(unique=True)
-    escola = models.ForeignKey(Escola, on_delete=models.CASCADE)
+    id_participante = models.IntegerField(unique=True) # Cria um id unico para cada participante, que não pode ser repetir
     
-    def __str__(self):
+    # Já aqui criamos um campo para associar acada estudante com uma escola, deletando o aluno caso a escola seja deletada
+    escola = models.ForeignKey(Escola, on_delete=models.CASCADE) 
+    
+    def __str__(self): # função para que possamos ver de forma mais limpa dados dos participantes
         return f"{self.nome} - {self.id_participante}"
     
 class Prova(models.Model):
@@ -34,3 +39,6 @@ class Leitura(models.Model):
     
     def __str__(self):
         return f"Leitura de {self.participante} na {self.prova}"
+    
+    # NOTA: Coloquei na maioria dos campos que precisava de tamanho o tamanho 100
+    # aparentemente é uma convenção, mas que podemos aumentar caso nescessário
