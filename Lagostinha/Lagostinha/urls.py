@@ -18,7 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django .conf import settings
 from django.conf.urls.static import static
-urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+ 
 """
 adiciona uma configuração para servir arquivos de mídia durante o 
 desenvolvimento. Serve para acessar arquivos de mídia que são 
@@ -32,3 +32,5 @@ urlpatterns = [
     path('api/', include('core.urls')),  # Inclui as URLs da aplicação core
     # assim os endpoints da API estarão disponíveis sob /api/
 ]
+
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
