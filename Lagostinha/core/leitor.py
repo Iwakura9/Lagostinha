@@ -11,7 +11,7 @@ class Reading(ctypes.Structure):
     ]
     
 # caminho para a biblioteca libleitor.so
-LIB_PATH = Path(__file__).resolve().parent /"bin"/"libleitor.so"
+LIB_PATH = Path(__file__).resolve().parent[1] /"bin"/"libleitor.so"
 leitor = ctypes.CDLL(str(LIB_PATH))
 
 # tipos de argumentos e retorno da função read_image_path
@@ -22,6 +22,3 @@ leitor.read_image_path.restype = Reading
 def ler_gabarito(path_imagem: str) -> Reading:
     resultado = leitor.read_image_path(path_imagem.encode())
     return resultado
-
-
-
