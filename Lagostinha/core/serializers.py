@@ -8,9 +8,9 @@ facilitando a comunicação entre a API e o frontend.
 """
 
 class EscolaSerializer(serializers.ModelSerializer):
-    class Meta:
+    class Meta: # Convenção do DRF para definir metadados do serializer
         model = Escola
-        fields = '__all__'
+        fields = '__all__' # Indica que todos os campos serão incluídos
         
 class ParticipanteSerializer(serializers.ModelSerializer):
     class Meta:
