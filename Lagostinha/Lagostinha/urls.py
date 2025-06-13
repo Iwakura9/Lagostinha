@@ -16,6 +16,16 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from django .conf import settings
+from django.conf.urls.static import static
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT) 
+"""
+adiciona uma configuração para servir arquivos de mídia durante o 
+desenvolvimento. Serve para acessar arquivos de mídia que são 
+carregados pelos usuários. O `settings.MEDIA_URL` define a 
+URL base para acessar esses arquivos, enquanto `settings.MEDIA_ROOT` 
+especifica o diretório no sistema de arquivos onde esses arquivos estão armazenados.
+"""
 
 urlpatterns = [
     path('admin/', admin.site.urls),
