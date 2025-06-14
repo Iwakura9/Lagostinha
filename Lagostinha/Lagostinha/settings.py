@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'core',
+    'gabaritos',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
@@ -125,3 +126,6 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
+
+# configurações proprias
+API_BASE_URL = 'http://localhost:8000/api'
