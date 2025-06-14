@@ -32,6 +32,7 @@ ALLOWED_HOSTS = []
 
 INSTALLED_APPS = [
     'core',
+    'gabaritos',
     'rest_framework',
     'django.contrib.admin',
     'django.contrib.auth',
