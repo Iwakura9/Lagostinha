@@ -31,6 +31,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('core.urls')),  # Inclui as URLs da aplicação core
     # assim os endpoints da API estarão disponíveis sob /api/
+    path('gabaritos/', include('gabaritos.urls'))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
