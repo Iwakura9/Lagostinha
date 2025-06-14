@@ -1,6 +1,7 @@
 import requests  # Importa a biblioteca para fazer requisições HTTP
 from django.conf import settings  # Para acessar as configurações do projeto
 from django.shortcuts import render
+from .forms import ParticipanteForms
 
 
 # Create your views here.
@@ -22,5 +23,5 @@ def index(request):
     
 
 def add(request):
-    
+
     return render(request, "gabaritos/add.html")
