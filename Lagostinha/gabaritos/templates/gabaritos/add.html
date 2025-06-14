@@ -8,10 +8,27 @@
         <link rel="stylesheet" href="{% static 'gabaritos/styles.css' %}">
     </head>
     <body>
+        <!--faixa do topo-->
         <header>
             <img src="{% static 'gabaritos/img/oci-velas.png' %}" alt="Logo OCI">
             <img src="{% static 'gabaritos/img/oci-letras.png' %}" alt="texto OCI">
         </header>
-        
+        <main>
+            <!--entrada dos dados no formulario-->
+            <form method="post">
+                {% csrf_token %}
+                <div>
+                    {{ form.nome.label_tag }}
+                    {{ form.nome }}
+                </div>
+                <div>
+
+                </div>
+                <div>
+
+                </div>
+                <button type="submit">Enviar</button>
+            </form>
+        </main>
     </body>
 </html>
