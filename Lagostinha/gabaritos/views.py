@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from .forms import ParticipanteForms
 
 # Create your views here.
 
@@ -10,4 +11,10 @@ def index(request):
     }) # renderiza a pagina principal
 
 def add(request):
-    return render(request, "gabaritos/add.html")
+    if request.method == 'post':
+        form = ParticipanteForms(request.POST)
+        # salvar a informação
+        
+    else:
+        form = ParticipanteForms()
+    return render(request, "gabaritos/add.html", {'form' : form})
