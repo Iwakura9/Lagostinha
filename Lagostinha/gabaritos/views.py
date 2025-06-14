@@ -1,20 +1,27 @@
+import requests  # Importa a biblioteca para fazer requisições HTTP
+from django.conf import settings  # Para acessar as configurações do projeto
 from django.shortcuts import render
 from .forms import ParticipanteForms
+
 
 # Create your views here.
 
 gabaritos = ["joão", "Fernando", "cleber"] # temporario, vai receber a tabela de gabaritos
 
 def index(request):
+    try:
+        response = requests.get(f'{settings.API_BASE_URL}/participantes/')
+        response.raise_for_status() 
+        participantes = response.json()
+
+    except requests.exceptions.RequestException as e:
+        participantes = []
+
     return render(request, "gabaritos/index.html", {
-        "gabaritos":gabaritos
-    }) # renderiza a pagina principal
+        "participantes": participantes
+    })
+    
 
 def add(request):
-    if request.method == 'post':
-        form = ParticipanteForms(request.POST)
-        # salvar a informação
-        
-    else:
-        form = ParticipanteForms()
-    return render(request, "gabaritos/add.html", {'form' : form})
+
+    return render(request, "gabaritos/add.html")
