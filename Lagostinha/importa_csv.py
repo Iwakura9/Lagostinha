@@ -33,7 +33,6 @@ with open("provas.csv", newline='', encoding='utf-8') as f:
         Prova.objects.update_or_create(
             id=row['Prova'],
             defaults={
-                'nome': f"Prova {row['Prova']}",
                 'gabarito': gabarito,
                 'pesos': pesos
             }
