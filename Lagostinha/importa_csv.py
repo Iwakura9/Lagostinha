@@ -1,7 +1,7 @@
 import csv
 from core.models import Escola, Participante, Prova
 
-# 🏫 Importar escolas e participantes
+# Importar escolas e participantes
 escolas_cache = {}  # evita recriar a mesma escola
 
 with open("participantes.csv", newline='', encoding='utf-8') as f:
@@ -23,7 +23,7 @@ with open("participantes.csv", newline='', encoding='utf-8') as f:
         )
 print("Participantes e escolas importados.")
 
-# 📝 Importar provas com pesos = 1,1,1,... com base no gabarito
+# Importar provas com pesos = 1,1,1,... com base no gabarito
 with open("provas.csv", newline='', encoding='utf-8') as f:
     reader = csv.DictReader(f)
     for row in reader:
@@ -31,7 +31,7 @@ with open("provas.csv", newline='', encoding='utf-8') as f:
         pesos = ",".join(["1"] * len(gabarito))  # gera 1,1,1,... com mesmo tamanho do gabarito
 
         Prova.objects.update_or_create(
-            id=row['Prova'],
+            id_prova=row['Prova'],
             defaults={
                 'gabarito': gabarito,
                 'pesos': pesos
