@@ -15,7 +15,7 @@ with open("participantes.csv", newline='', encoding='utf-8') as f:
             escola_obj = escolas_cache[escola_nome]
 
         Participante.objects.update_or_create(
-            id=row['id'],
+            id_participante=row['id'],
             defaults={
                 'nome': row['nome'],
                 'escola': escola_obj
