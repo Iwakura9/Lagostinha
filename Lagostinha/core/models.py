@@ -8,7 +8,7 @@ class Escola(models.Model):
     nome = models.CharField(max_length=100)
     
     def __str__(self):
-        return f"{self.nome} ({self.cidade})"
+        return f"{self.nome}"
     
 # Mesma coisa, porém para os participantes da prova
 class Participante(models.Model):
