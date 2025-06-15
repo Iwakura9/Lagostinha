@@ -3,7 +3,7 @@ from django.db import models
 # Create your models here.
 
 # cria registros de escolas no banco de dados
-# cada registro é uma linha, com o nome e a cidade
+# cada registro é uma linha, com o nome
 class Escola(models.Model):
     nome = models.CharField(max_length=100)
     
@@ -12,6 +12,7 @@ class Escola(models.Model):
     
 # Mesma coisa, porém para os participantes da prova
 class Participante(models.Model):
+    nome = models.CharField(max_length=100) # Cria um campo para o nome do participante
     id_participante = models.IntegerField(unique=True) # Cria um id unico para cada participante, que não pode ser repetir
     
     # Já aqui criamos um campo para associar acada estudante com uma escola, deletando o aluno caso a escola seja deletada
