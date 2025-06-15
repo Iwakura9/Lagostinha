@@ -67,12 +67,14 @@ class GabaritoUploadView(APIView):
         # Calcula a nota
         gabarito = list(prova.gabarito)
         respostas = list(leitura.leitura.decode())
-        pesos = list(map(int, prova.pesos.split(',')))
+        
+        num_questoes = len(gabarito)
+        peso = 10.0 / num_questoes
 
-        nota = 0
-        for g, r, p in zip(gabarito, respostas, pesos):
+        nota = 0.0
+        for g, r in zip(gabarito, respostas):
             if g == r:
-                nota += p
+                nota += peso
 
         leitura_obj = Leitura.objects.create(
             participante=participante,
