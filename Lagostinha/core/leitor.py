@@ -42,8 +42,8 @@ leitor.read_image_path.argtypes = [ctypes.c_char_p]
 leitor.read_image_path.restype = Reading
 
 def ler_gabarito(path_imagem: str) -> Reading:
-    """
-    Recebe o path absoluto para a imagem, chama libleitor.read_image_path
-    e retorna um objeto Reading.
-    """
-    return leitor.read_image_path(path_imagem.encode())
+    path = Path(path_imagem).resolve()
+    if not path.exists():
+        raise FileNotFoundError(f"Arquivo {path} não encontrado.")
+    return leitor.read_image_path(str(path).encode())
+

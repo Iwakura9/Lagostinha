@@ -6,6 +6,7 @@ from rest_framework import status
 from .leitor import ler_gabarito
 from .models import Escola, Participante, Prova, Leitura
 from .serializers import EscolaSerializer, ParticipanteSerializer, ProvaSerializer, LeituraSerializer
+import tempfile
 
 # Views para os modelos Escola, Participante, Prova e Leitura.
 '''
@@ -43,7 +44,13 @@ class GabaritoUploadView(APIView):
         if not imagem:
             return Response({"erro": "Nenhuma imagem enviada"}, status=status.HTTP_400_BAD_REQUEST)
 
-        leitura = ler_gabarito(imagem.temporary_file_path() if hasattr(imagem, 'temporary_file_path') else imagem)
+
+        with tempfile.NamedTemporaryFile(delete=False, suffix=".png") as temp:
+            for chunk in imagem.chunks():
+                temp.write(chunk)
+            temp.flush()
+            leitura = ler_gabarito(temp.name)
+
 
         if leitura.erro != 0:
             return Response({
