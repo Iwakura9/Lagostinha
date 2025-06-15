@@ -1,42 +1,152 @@
-
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html, body {
-  height: 100%;
-  margin: 0;
-  padding: 0;
-  background-color: #2C2C2C;
-}
-
-header {
+.head-gabaritos {
     background-color: black;
-    padding-top: 20px;
-    padding-bottom: 20px;
+    height: 130px;
+    width: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1000;
     display: flex;
     align-items: center;
+    padding: 0 20px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
 
-img {
-    margin-left: 30px;
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 20px;
 }
 
-h1 {
-    color: #ffffff;
+.logo-img, .logo-txt {
+    height: 60%;
+    width: auto;
+    object-fit: contain;
+}
+
+.logo-img {
+    max-height: 100px;
+}
+
+.pagina-gabaritos {
+    margin: 0;
+    min-height: 100vh;
+    background-color: #2C2C2C;
+    padding-top: 170px;
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.main-superior {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 30px;
+    padding: 0 100px;
+}
+
+.titulo {
+    color: white;
     font-size: 50px;
-    margin-left: 30px;
-    margin-top: 30px;
+    letter-spacing: -0.5px;
 }
 
-li {
-    color: #ffffff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    font-size: 20px;
-    margin-left: 30px;
-    margin-top: 30px;
+.btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: 14px 18px;
+    border-radius: 18px;
+    font-weight: 1000;
+    font-size: 1.5rem;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.btn:hover {
+    background-color: #0062cc; 
+    transform: translateY(-3px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+    filter: brightness(105%); 
+}
+
+.btn:active {
+    background-color: #0056b3; 
+    transform: translateY(1px); 
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); 
+    filter: brightness(95%); 
+}
+
+table {
+    border-collapse: separate; 
+    border-spacing: 0; 
+}
+
+thead {
+    box-shadow: 0 2px 0 #6b6b6b;
+}
+
+th, td{
+    padding: 25px 20px;
+    vertical-align: center;
+    color: white;
+    position: relative; 
+}
+
+th {
+    font-size: 32px;
+}
+
+td {
+    font-size: 25px;
+}
+
+.main-inferior {
+    padding: 0 100px;
+}
+
+.col-gabarito, .cell-gabarito {
+    width: 200px;
+}
+
+
+.col-participante, .cell-participante {
+    width: 450px;
+}
+
+.col-nota, .cell-nota {
+    width: 200px;
+}
+.col-escola, .cell-escola {
+    width: 350px;
+}
+.cell-acoes {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 15px;
+}
+
+.btn-edit, .btn-del {
+    display: flex;
+    gap: 20px;
+}
+
+.col-acoes, .cell-acoes {
+    width: 350px;
+}
+
+th:not(:last-child)::after, td:not(:last-child)::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 2px;
+    background: rgba(255, 255, 255, 0.3); 
+}
+
