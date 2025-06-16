@@ -1,6 +1,6 @@
 from django.urls import path, include
 from rest_framework.routers import DefaultRouter
-from .views import EscolaViewSet, ParticipanteViewSet, ProvaViewSet, LeituraViewSet, GabaritoUploadView
+from .views import EscolaViewSet, ParticipanteViewSet, ProvaViewSet, LeituraViewSet, GabaritoUploadView, GabaritoManualUploadView
 
 # URL routing para a API do Lagostinha.
 router = DefaultRouter()
@@ -12,5 +12,6 @@ router.register(r'leituras', LeituraViewSet)
 
 urlpatterns = router.urls
 urlpatterns += [ 
-    path('upload-gabarito/', GabaritoUploadView.as_view(), name='upload-gabarito')
+    path('upload-gabarito/', GabaritoUploadView.as_view(), name='upload-gabarito'),
+    path('upload-gabarito-manual/', GabaritoManualUploadView.as_view(), name='upload-gabarito-manual')
 ]
