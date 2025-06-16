@@ -3,6 +3,7 @@ from django.conf import settings  # Para acessar as configurações do projeto
 from django.shortcuts import render
 from .forms import AlunoForm
 from core.models import *
+from django.shortcuts import redirect
 
 # Create your views here.
 
@@ -14,13 +15,53 @@ def index(request):
         response = requests.get(base_url + "leituras/")
         response.raise_for_status()
         leituras = response.json()
+        saidas = []
+        for leitura in leituras:
+            if(leitura["erro"]): # gabarito com erro
+                continue
+            my_dict = {}
+            my_dict["id"] = leitura["id"]
+            my_dict["nota"] = leitura["nota"]
+            try:
+                response_part = requests.get(base_url + "participantes/" + str(leitura["participante"]))
+                response_part.raise_for_status()
+                leitura_part = response_part.json()
+                my_dict["nome_part"] = leitura_part["nome"]
+
+                response_prova = requests.get(base_url + "provas/" + str(leitura["prova"]))
+                response_prova.raise_for_status()
+                leitura_prova = response_prova.json()
+                my_dict["id_prova"] = leitura_prova["id_prova"]
+
+                response_escola = requests.get(base_url + "escolas/" + str(leitura_part["escola"]))
+                response_escola.raise_for_status()
+                leitura_escola = response_part.json()
+                my_dict["nome_escola"] = leitura_escola["nome"]
+            except Exception as inner_e:
+                print(f"Inner error: {inner_e}")
+                continue  
+
+
+            saidas.append(my_dict)
+
     except Exception as e:
-        leituras = []
+        saida = []
         print("erro", e)
 
     return render(request, "gabaritos/index.html", {
-        "leituras" : leituras
+        "saidas" : saidas
     })
+    
+def remover(request):
+    if request.method == "POST":
+        leitura_id = request.POST.get('leitura-id')
+        try:
+            headers = {'X-CSRFToken': request.COOKIES.get('csrftoken', '')}
+            response = requests.delete(base_url + "leituras/" + leitura_id + "/", headers=headers)
+            response.raise_for_status()
+        except Exception as e:
+            print("erro", e)
+    return redirect("index")
 
 def add(request):
     mensagem = None
