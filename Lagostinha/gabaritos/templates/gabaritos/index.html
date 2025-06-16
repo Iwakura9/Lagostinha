@@ -7,20 +7,56 @@
         <title>OCI - Gabaritos</title>
         <link rel="stylesheet" href="{% static 'gabaritos/styles.css' %}">
     </head>
-    <body>
-        <header>
-            <img src="{% static 'gabaritos/img/oci-velas.png' %}" alt="Logo OCI">
-            <img src="{% static 'gabaritos/img/oci-letras.png' %}" alt="texto OCI">
+    <body class="pagina-gabaritos">
+
+        <header class="head-gabaritos">
+            <div class="logo">
+                <img class="logo-img" src="{% static 'gabaritos/img/oci-velas.png' %}" alt="Logo OCI">
+                <img class="logo-txt" src="{% static 'gabaritos/img/oci-letras.png' %}" alt="texto OCI">
+            </div>
         </header>
-        <main>
-            <h1> Gabaritos </h1>
-            <a href="{% url 'add' %}">adicionar</a>
-            <ul>
-                {% for participante in participantes %}
-                    <li> {{ participante.nome }} </li>
-                    <!--falta ainda os botões de editar e remover-->
-                {% endfor %}
-            </ul>
+
+        <main class="main-gabaritos">
+            <div class="main-superior">
+                <h1 class="titulo"> Gabaritos </h1>
+                <a class="btn btn-add" href="{% url 'add' %}">adicionar</a>
+            </div>
+
+            <div class="main-inferior">
+                <table class="tasbela">
+                    <thead class="tabela-head">
+                        <tr>
+                            <th class="col-gabarito">Gabarito</th>
+                            <th class="col-participante">Participante</th>
+                            <th class="col-escola">Escola</th>
+                            <th class="col-nota">Nota</th>
+                            <th class="col-acoes">Ações</th>
+                        </tr>
+                    </thead>
+
+                    <tbody class="tabela-body">
+                        {% for saida in saidas %}
+                            <tr>
+                                <td class="cell-gabarito"> {{ saida.id_prova }}</td>
+                                <td class="cell-participante">{{ saida.nome_part }}</td>
+                                <td class="cell-escola">{{ saida.nome_escola }}</td>
+                                <td class="cell-nota">{{ saida.nota }}</td>
+                                <td class="cell-acoes">
+                                    <a class="btn btn-edit">Editar</a>
+                                    <form method="post" action="{% url 'remove' %}">
+                                        {% csrf_token %}
+
+                                        <input type="hidden" name="leitura-id" value="{{ saida.id }}">
+                                        <button class="btn btn-del">Remover</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         </main>
     </body>
 </html>
+
