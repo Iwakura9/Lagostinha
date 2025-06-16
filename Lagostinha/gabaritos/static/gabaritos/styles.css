@@ -260,3 +260,27 @@ label[for="arquivo"] {
     width: 800px;
     height: 700px;
 }
+
+.linha-aluno {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    font-size: 70px;
+}
+
+.btn-enviar {
+    margin-left: auto;
+    margin-right: 100px; 
+}
+
+.linha-upload {
+    display: flex;
+    align-items: center;
+    gap: 50px; 
+    width: 100%;
+}
+
+.btn-upload {
+    flex-shrink: 0;
+}
