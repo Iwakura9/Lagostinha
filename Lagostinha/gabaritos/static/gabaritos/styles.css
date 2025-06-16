@@ -2,12 +2,12 @@
     background-color: black;
     height: 130px;
     width: 100%;
-    position: fixed;
     top: 0;
     left: 0;
     z-index: 1000;
     display: flex;
     align-items: center;
+    position: fixed;
     padding: 0 20px;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
 }
@@ -45,6 +45,7 @@
 }
 
 .titulo {
+    font-weight: 800;
     color: white;
     font-size: 50px;
     letter-spacing: -0.5px;
@@ -159,10 +160,13 @@ th:not(:last-child)::after, td:not(:last-child)::after {
 }
 
 .add-superior {
+    font-weight: 800;
     display: flex;
     flex-direction: column;
     width: 100%;
-    gap: 20px;
+    font-size: 30px;
+    color: white;
+    padding: 0 40px;
     
 }
 
@@ -172,11 +176,7 @@ th:not(:last-child)::after, td:not(:last-child)::after {
     width: 100%;
 }
 
-.add-inferior-esq {
-    flex: 2;
-}
-
-.add-inferior-dir {
+.add-inferior-esq, .add-inferior-dir {
     flex: 1;
 }
 
@@ -193,14 +193,70 @@ th:not(:last-child)::after, td:not(:last-child)::after {
 input[type="text"] {
     background-color: #474747;
     border: none;
+    height: 40px;
+    width: 800px;
+    font-size: 18px;
+    padding: 0 15px;
+    color:white;
 }
 
-.input-topo-2 {
+.alinhar {
     display: flex;
-    gap: 20px;
+    align-items: center;
+    gap: 30px;
 }
 
-.input-topo-in-2 {
-    flex: 1;
+.input-img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 40px; 
+    width: 100%;
+    background-color: #474747;
+    cursor: pointer;
 }
 
+
+label[for="arquivo"] {
+    cursor: pointer;
+}
+
+
+.itens-col form {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+    padding: 10px;
+}
+
+.itens-col .texto {
+    min-width: 30px;
+    text-align: center;
+    font-size: 24px;
+    font-weight: 400;
+    color: white;
+    margin: 0;
+    
+}
+
+.itens-col label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    color: white;
+    font-size: 18px;
+    cursor: pointer;
+}
+
+.itens-col input[type="radio"] {
+    width: 18px;
+    height: 18px;
+    cursor: pointer;
+}
+
+.itens, .input-img{
+    border-radius: 5px;
+    width: 800px;
+    height: 700px;
+}
