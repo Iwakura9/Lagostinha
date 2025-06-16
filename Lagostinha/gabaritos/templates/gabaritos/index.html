@@ -35,18 +35,18 @@
                     </thead>
 
                     <tbody class="tabela-body">
-                        {% for leitura in leituras %}
+                        {% for saida in saidas %}
                             <tr>
-                                <td class="cell-gabarito"> {{ leitura.prova.id_prova }}</td>
-                                <td class="cell-participante">{{ leitura.participante.nome }}</td>
-                                <td class="cell-escola">{{ leitura.participante.escola.nome }}</td>
-                                <td class="cell-nota">{{ leitura.nota }}</td>
+                                <td class="cell-gabarito"> {{ saida.id_prova }}</td>
+                                <td class="cell-participante">{{ saida.nome_part }}</td>
+                                <td class="cell-escola">{{ saida.nome_escola }}</td>
+                                <td class="cell-nota">{{ saida.nota }}</td>
                                 <td class="cell-acoes">
                                     <a class="btn btn-edit">Editar</a>
-                                    <form>
+                                    <form method="post" action="{% url 'remove' %}">
                                         {% csrf_token %}
 
-                                        <input>
+                                        <input type="hidden" name="leitura-id" value="{{ saida.id }}">
                                         <button class="btn btn-del">Remover</button>
                                     </form>
                                 </td>
