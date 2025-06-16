@@ -6,19 +6,21 @@ from core.models import *
 
 # Create your views here.
 
-def index(request):
-    try:
-        response = requests.get(f'{settings.API_BASE_URL}/participantes/')
-        response.raise_for_status() 
-        participantes = response.json()
+base_url = "http://127.0.0.1:8000/api/"
 
-    except requests.exceptions.RequestException as e:
-        participantes = []
+def index(request):
+    erro = None
+    try:
+        response = requests.get(base_url + "leituras/")
+        response.raise_for_status()
+        leituras = response.json()
+    except Exception as e:
+        leituras = []
+        print("erro", e)
 
     return render(request, "gabaritos/index.html", {
-        "participantes": participantes
+        "leituras" : leituras
     })
-    
 
 def add(request):
     mensagem = None
