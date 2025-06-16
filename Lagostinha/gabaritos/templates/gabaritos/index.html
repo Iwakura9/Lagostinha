@@ -23,7 +23,7 @@
             </div>
 
             <div class="main-inferior">
-                <table class="tabela">
+                <table class="tasbela">
                     <thead class="tabela-head">
                         <tr>
                             <th class="col-gabarito">Gabarito</th>
@@ -35,27 +35,24 @@
                     </thead>
 
                     <tbody class="tabela-body">
-                        <!--Dados recebidos apareceram aqui-->
-                        <tr>
-                            <td class="cell-gabarito">1</td>
-                            <td class="cell-participante">Joao</td>
-                            <td class="cell-escola">Escola Nova</td>
-                            <td class="cell-nota">20/20</td>
-                            <td class="cell-acoes">
-                                <a class="btn btn-edit">Editar</a>
-                                <button class="btn btn-del">Remover</button>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td class="cell-gabarito">1</td>
-                            <td class="cell-participante">Joao</td>
-                            <td class="cell-escola">Escola Nova</td>
-                            <td class="cell-nota">20/20</td>
-                            <td class="cell-acoes">
-                                <a class="btn btn-edit">Editar</a>
-                                <button class="btn btn-del">Remover</button>
-                            </td>
-                        </tr>
+                        {% for leitura in leituras %}
+                            <tr>
+                                <td class="cell-gabarito"> {{ leitura.prova.id_prova }}</td>
+                                <td class="cell-participante">{{ leitura.participante.nome }}</td>
+                                <td class="cell-escola">{{ leitura.participante.escola.nome }}</td>
+                                <td class="cell-nota">{{ leitura.nota }}</td>
+                                <td class="cell-acoes">
+                                    <a class="btn btn-edit">Editar</a>
+                                    <form>
+                                        {% csrf_token %}
+
+                                        <input>
+                                        <button class="btn btn-del">Remover</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            
+                        {% endfor %}
                     </tbody>
                 </table>
             </div>
