@@ -72,14 +72,20 @@ class GabaritoUploadView(APIView):
         peso = 10.0 / num_questoes
 
         nota = 0.0
+        acertos = 0
         for g, r in zip(gabarito, respostas):
             if g == r:
                 nota += peso
+                acertos += 1
+                
+        acertos_str = f"{acertos}/{num_questoes}"
 
         leitura_obj = Leitura.objects.create(
             participante=participante,
             prova=prova,
             leitura=leitura.leitura.decode(),
+            imagem=imagem.name,
+            acertos=acertos_str,
             nota=nota,
             erro=leitura.erro,
         )
