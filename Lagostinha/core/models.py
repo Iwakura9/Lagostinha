@@ -35,7 +35,6 @@ class Leitura(models.Model):
     leitura = models.CharField(max_length=100)
     nota = models.FloatField()
     erro = models.IntegerField() # 0: ok, 1: erro
-    imagem = models.CharField(max_length=100)
     acertos = models.CharField(max_length=100)
 
 

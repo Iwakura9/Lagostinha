@@ -1,4 +1,3 @@
-from django.shortcuts import render
 from rest_framework import viewsets
 from rest_framework.views import APIView
 from rest_framework.response import Response
@@ -22,15 +21,15 @@ destroy: DELETE /recurso/{id}/
 class EscolaViewSet(viewsets.ModelViewSet):
     queryset = Escola.objects.all() # QuerySet que retorna todas as instâncias de Escola
     serializer_class = EscolaSerializer # Serializer que define como os dados serão convertidos para JSON, nesse caso os dados da Escola
-    
+
 class ParticipanteViewSet(viewsets.ModelViewSet):
     queryset = Participante.objects.all()
-    serializer_class = ParticipanteSerializer   
-    
+    serializer_class = ParticipanteSerializer
+
 class ProvaViewSet(viewsets.ModelViewSet):
     queryset = Prova.objects.all()
-    serializer_class = ProvaSerializer  
-    
+    serializer_class = ProvaSerializer
+
 class LeituraViewSet(viewsets.ModelViewSet):
     queryset = Leitura.objects.all()
     serializer_class = LeituraSerializer
@@ -67,7 +66,7 @@ class GabaritoUploadView(APIView):
         # Calcula a nota
         gabarito = list(prova.gabarito)
         respostas = list(leitura.leitura.decode())
-        
+
         num_questoes = len(gabarito)
         peso = 10.0 / num_questoes
 
@@ -77,14 +76,13 @@ class GabaritoUploadView(APIView):
             if g == r:
                 nota += peso
                 acertos += 1
-                
+
         acertos_str = f"{acertos}/{num_questoes}"
 
         leitura_obj = Leitura.objects.create(
             participante=participante,
             prova=prova,
             leitura=leitura.leitura.decode(),
-            imagem=imagem.name,
             acertos=acertos_str,
             nota=nota,
             erro=leitura.erro,
