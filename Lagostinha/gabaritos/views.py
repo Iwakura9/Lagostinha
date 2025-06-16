@@ -11,7 +11,6 @@ base_url = "http://127.0.0.1:8000/api/"
 
 def index(request):
     # melhoria possivel
-
     erro = None
     try:
         response = requests.get(base_url + "leituras/")
