@@ -6,6 +6,7 @@
         <meta charset="UTF-8">
         <title>OCI - Gabaritos</title>
         <link rel=stylesheet href="{% static 'gabaritos/styles.css' %}">
+        <script src="{% static 'gabaritos/script.js' %}"></script>
      </head>
      <body class="pagina-gabaritos">
         <header class="head-gabaritos">
@@ -16,191 +17,197 @@
         </header>
         <main class="main-gabaritos main-add">
             <!--superior-->
-            <h1 class="titulo">Novo gabarito</h1>
+            <div class="linha-aluno">
+                <h1 class="titulo">Novo gabarito</h1>
+                <button class="btn btn-enviar">Enviar</button>
+            </div>
             <div class="add-superior">
-                
-                
-                <p class="texto">Aluno</p> 
-                <input class="input-topo" type="text" id="Aluno">
-                <div class="input-topo-2">
+                <div class="alinhar">
+                    <p class="texto">Aluno</p> 
+                    <input class="input-topo" type="text" id="Aluno">
+                </div>
+                    
+                <div class="alinhar">
                     <p class="texto">Escola</p>
-                    <input class="input-topo-in-2" type="text" id="Aluno">
+                    <input class="input-topo" type="text" id="Aluno">
+                </div>
+
+                <div class="alinhar">
                     <p class="texto">Inscrição</p>
-                    <input class="input-topo-in-2" type="text" id="Inscrição">
+                    <input class="input-topo" type="text" id="Inscrição">
                 </div>
             </div>
-
             <!--esquerda inferior-->
             <div class="add-inferior">
                 <div class="add-inferior-esq">
-                    <p class="titulo">Gabaritos</p>
+                    <p class="titulo">Gabarito</p>
                     <div class="itens">
 
                         <div class="itens-col">
                             <form>
                                 <!-- aqui é so coloar o numero na mesma linha em todos -->
-                                <p class="texto">1</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">1.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">2</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">2.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">3</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">3.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">4</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">4.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">5</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">5.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">6</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">6.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">7</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">7.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">8</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">8.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">9</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">9.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">10</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">10.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                         </div>
                         <!-- Aqui é a hora de denovo espelhar porque completou as 10 -->
                         <div class="itens-col">
                             <form>
                                 <!-- aqui é so coloar o numero na mesma linha em todos -->
-                                <p class="texto">11</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">11.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">12</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">12.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">13</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">13.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">14</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">14.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">15</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">15.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">16</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">16.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">17</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">17.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">18</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">18.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">19</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">19.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                             <form>
-                                <p class="texto">20</p>
-                                <label><input type="radio" name="escolha" value="A"></label>
-                                <label><input type="radio" name="escolha" value="B"></label>
-                                <label><input type="radio" name="escolha" value="C"></label>
-                                <label><input type="radio" name="escolha" value="D"></label>
-                                <label><input type="radio" name="escolha" value="E"></label>
+                                <p class="texto">20.</p>
+                                <label><input type="radio" name="escolha" value="A">A</label>
+                                <label><input type="radio" name="escolha" value="B">B</label>
+                                <label><input type="radio" name="escolha" value="C">C</label>
+                                <label><input type="radio" name="escolha" value="D">D</label>
+                                <label><input type="radio" name="escolha" value="E">E</label>
                             </form>
                         </div>
                     </div>
@@ -208,14 +215,26 @@
 
                 <!--direita inferior-->
                 <div class="add-inferior-dir">
-                    <p class="titulo">...Ou insira uma imagem</p>
-                    <input type="file" id="arquivo" name="arquivo" accept="image/*">
-                    <button onclick="enviar()">Submeter</button>
+                    <div class="linha-upload">
+                        <p class="titulo">...Ou insira uma imagem</p>
+                        <button class="btn btn-upload">Submeter</button>
+                    </div>
+                    <input hidden type="file" id="arquivo" name="arquivo" accept="image/*" onchange="mostrarNomeArquivo(this)">
+                    <label for="arquivo">
+                        <div class="input-img">
+                            <img class="icon-img" src="{% static 'gabaritos/img/icone.png' %}">
+                        </div>
+                        <span id="nome-arquivo" class="nome-arquivo"></span>
+                    </label>
+                    
+                    
                 </div>
             </div>
                 
-            <button onclick="enviar()">Enviar</button>
         </main>
+        
+
+
 
      </body>
 
