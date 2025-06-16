@@ -18,7 +18,8 @@ from django.contrib import admin
 from django.urls import path, include
 from django .conf import settings
 from django.conf.urls.static import static
- 
+from django.shortcuts import redirect
+from django.views.generic.base import RedirectView
 """
 adiciona uma configuração para servir arquivos de mídia durante o 
 desenvolvimento. Serve para acessar arquivos de mídia que são 
@@ -31,8 +32,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('api/', include('core.urls')),  # Inclui as URLs da aplicação core
     # assim os endpoints da API estarão disponíveis sob /api/
-    path('gabaritos/', include('gabaritos.urls'))  # Inclui as URLs da interfaces
+    path('gabaritos/', include('gabaritos.urls')),  # Inclui as URLs da interfaces
     # que serão de fato acessadas
+    path('',RedirectView.as_view(url='gabaritos/', permanent=True))
 ]
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+

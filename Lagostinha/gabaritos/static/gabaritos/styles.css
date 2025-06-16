@@ -150,3 +150,57 @@ th:not(:last-child)::after, td:not(:last-child)::after {
     background: rgba(255, 255, 255, 0.3); 
 }
 
+
+
+.main-add {
+    display: flex;
+    flex-direction: column;
+    padding: 0 50px;
+}
+
+.add-superior {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    gap: 20px;
+    
+}
+
+.add-inferior {
+    display: flex;
+    gap: 200px;
+    width: 100%;
+}
+
+.add-inferior-esq {
+    flex: 2;
+}
+
+.add-inferior-dir {
+    flex: 1;
+}
+
+.itens {
+    display: flex;
+    max-width: 1200px;
+    background-color: #474747;
+}
+
+.itens-col {
+    flex: 1;
+}
+
+input[type="text"] {
+    background-color: #474747;
+    border: none;
+}
+
+.input-topo-2 {
+    display: flex;
+    gap: 20px;
+}
+
+.input-topo-in-2 {
+    flex: 1;
+}
+
