@@ -103,19 +103,27 @@ class GabaritoManualUploadView(APIView):
             return Response({'erro': 'Campos obrigatórios ausentes'}, status=400)
 
         try:
-            prova = Prova.objects.get(id=prova_id)
-            participante = Participante.objects.get(id=participante_id)
+            prova = Prova.objects.get(id_prova=prova_id)  # ou pk=prova_id
+            participante = Participante.objects.get(id_participante=participante_id)  # ou pk=participante_id
+            
         except Prova.DoesNotExist:
             return Response({'erro': 'Prova não encontrada'}, status=400)
         except Participante.DoesNotExist:
             return Response({'erro': 'Participante não encontrado'}, status=400)
 
         gabarito = prova.gabarito
-        num_questoes = min(len(gabarito), len(leitura_str))
+        
+        # Validar tamanho da leitura
+        if len(leitura_str) != len(gabarito):
+            return Response({
+                'erro': f'Leitura deve ter {len(gabarito)} caracteres, mas tem {len(leitura_str)}'
+            }, status=400)
+        
+        num_questoes = len(gabarito)
 
         # Cálculo de pesos uniformes somando 10
-        peso = 10 / num_questoes
-        nota = 0
+        peso = 10.0 / num_questoes  # Usar float para precisão
+        nota = 0.0
         acertos = 0
 
         for g, r in zip(gabarito, leitura_str):
@@ -125,21 +133,29 @@ class GabaritoManualUploadView(APIView):
 
         acertos_str = f"{acertos}/{num_questoes}"
 
-        leitura_obj = Leitura.objects.create(
-            participante=participante,
-            prova=prova,
-            leitura=leitura_str,
-            acertos=acertos_str,
-            nota=nota,
-            erro="",
-        )
+        try:
+            leitura_obj = Leitura.objects.create(
+                participante=participante,
+                prova=prova,
+                leitura=leitura_str,
+                acertos=acertos_str,
+                nota=nota,
+                erro=0,  # CORREÇÃO 3: Usar inteiro em vez de string vazia
+            )
 
-        return Response({
-            'id': leitura_obj.id,
-            'nota': leitura_obj.nota,
-            'leitura': leitura_obj.leitura,
-            'acertos': leitura_obj.acertos,
-            'erro': leitura_obj.erro,
-        })
+            return Response({
+                'id': leitura_obj.id,
+                'nota': leitura_obj.nota,
+                'leitura': leitura_obj.leitura,
+                'acertos': leitura_obj.acertos,
+                'erro': leitura_obj.erro,
+                'participante': participante.nome,
+                'prova': f"Prova {prova.id_prova}"
+            }, status=201) 
+            
+        except Exception as e:
+            return Response({
+                'erro': f'Erro ao salvar no banco de dados: {str(e)}'
+            }, status=500)
 
             
