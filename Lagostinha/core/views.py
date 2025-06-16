@@ -90,3 +90,56 @@ class GabaritoUploadView(APIView):
 
         serializer = LeituraSerializer(leitura_obj)
         return Response(serializer.data, status=status.HTTP_201_CREATED)
+
+
+class GabaritoManualUploadView(APIView):
+    def post(self, request):
+        leitura_str = request.data.get('leitura')
+        prova_id = request.data.get('prova_id')
+        participante_id = request.data.get('participante_id')
+
+        # Validação
+        if not leitura_str or not prova_id or not participante_id:
+            return Response({'erro': 'Campos obrigatórios ausentes'}, status=400)
+
+        try:
+            prova = Prova.objects.get(id=prova_id)
+            participante = Participante.objects.get(id=participante_id)
+        except Prova.DoesNotExist:
+            return Response({'erro': 'Prova não encontrada'}, status=400)
+        except Participante.DoesNotExist:
+            return Response({'erro': 'Participante não encontrado'}, status=400)
+
+        gabarito = prova.gabarito
+        num_questoes = min(len(gabarito), len(leitura_str))
+
+        # Cálculo de pesos uniformes somando 10
+        peso = 10 / num_questoes
+        nota = 0
+        acertos = 0
+
+        for g, r in zip(gabarito, leitura_str):
+            if g == r:
+                nota += peso
+                acertos += 1
+
+        acertos_str = f"{acertos}/{num_questoes}"
+
+        leitura_obj = Leitura.objects.create(
+            participante=participante,
+            prova=prova,
+            leitura=leitura_str,
+            acertos=acertos_str,
+            nota=nota,
+            erro="",
+        )
+
+        return Response({
+            'id': leitura_obj.id,
+            'nota': leitura_obj.nota,
+            'leitura': leitura_obj.leitura,
+            'acertos': leitura_obj.acertos,
+            'erro': leitura_obj.erro,
+        })
+
+            
