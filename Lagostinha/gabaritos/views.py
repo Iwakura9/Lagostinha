@@ -4,6 +4,7 @@ from django.shortcuts import render
 from .forms import AlunoForm
 from core.models import *
 from django.shortcuts import redirect
+from django.core.files.storage import FileSystemStorage
 
 # Create your views here.
 
@@ -11,6 +12,7 @@ base_url = "http://127.0.0.1:8000/api/"
 
 def index(request):
     # melhoria possivel
+
     erro = None
     try:
         response = requests.get(base_url + "leituras/")
@@ -64,62 +66,53 @@ def remover(request):
             print("erro", e)
     return redirect("index")
 
-def add(request):
-    mensagem = None
-    tipo_mensagem = None # erro, sucesso, ou None
-
+def processar_imagem(request):
     if request.method == "POST":
-        form = AlunoForm(request.POST)
-        if form.is_valid():
-
-            nome_aluno = form.cleaned_data['nome_aluno'] 
-            nome_escola = form.cleaned_data['nome_escola']
-            
-            try:
-                # Verifica se a escola existe
-                response = requests.get(
-                    f'{settings.API_BASE_URL}/escolas/',
-                    params={'nome__iexact': nome_escola}
-                )
-                response.raise_for_status()  # Verifica erros na requisição
-                escolas = response.json()
-
-                if escolas:  # Escola existe
-                    escola_id = escolas[0]['id']
-                    mensagem = f"Aluno vinculado à escola existente: {nome_escola}"
-                else:  # Cria nova escola
-                    response = requests.post(
-                        f"{settings.API_BASE_URL}/escolas/",
-                        json={'nome': nome_escola}
-                    )
-                    response.raise_for_status()
-                    escola_id = response.json()['id']
-                    mensagem = f"Nova escola cadastrada: {nome_escola}"
+        try:
+            if 'imagem' in request.FILES:
                 
-                # Cadastra o aluno
-                response = requests.post(
-                    f"{settings.API_BASE_URL}/participantes/",
-                    json={
-                        'nome': nome_aluno,
-                        'escola': escola_id
-                    }
-                )
-                response.raise_for_status()
+                files = {'imagem': request.FILES['imagem']}
+                headers = {'Authorization': 'Token YOUR_API_TOKEN'}  
                 
-                tipo_mensagem = 'sucesso'
-                form = AlunoForm() 
+                
+                api_url = 'http://localhost:8000/api/upload-gabarito/'  
+                response = requests.post(api_url, files=files, headers=headers)
+                
+                if response.status_code == 201:
+                    
+                    data = response.json()
+                    return render(request, 'gabaritos/resultado.html', {
+                        'leitura': data,
+                        'sucesso': True
+                    })
+                else:
+                   
+                    return render(request, 'gabaritos/add.html', {
+                        'erro': 'Erro no processamento',
+                        'mensagem': response.json().get('erro', 'Erro desconhecido')
+                    })
+        
+        except Exception as e:
+            print("Erro:", str(e))
+            return render(request, 'gabaritos/add.html', {
+                'erro': 'Erro interno',
+                'mensagem': str(e)
+            })
 
-            except requests.exceptions.RequestException as e:
-                mensagem = "Erro na comunicação com a API:" + str(e)
-                tipo_mensagem = "erro"
-            except Exception as e:
-                mensagem = "Erro no cadastro: " + str(e)
-                tipo_mensagem = "erro"
-    else:
-        form = AlunoForm()
-    
-    return render(request, "gabaritos/add.html",{
-        'form': form,
-        'mensagem': mensagem,
-        'tipo_mensagem': tipo_mensagem
-    })
+    return render(request, 'gabaritos/add.html')
+
+def add(request):
+    if request.method == 'POST':
+        
+        aluno = request.POST.get('aluno')
+        escola = request.POST.get('escola')
+        inscricao = request.POST.get('inscricao')
+        
+        # Coletar respostas das questões (1 a 20)
+        respostas = {}
+        for i in range(1, 21):
+            respostas[f'questao{i}'] = request.POST.get(f'questao{i}')
+
+        
+
+    return render(request, 'gabaritos/add.html')
